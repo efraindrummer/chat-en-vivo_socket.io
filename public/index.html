@@ -4,17 +4,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <title>Socket</title>
 </head>
 
 <body>
-    <h1>Socket.IO</h1>
+    <style>
+        #content_message {
+            width: 50%;
+            background: gray;
+            border: solid 2px black;
+        }
+        
+        .content {
+            width: 50%;
+            left: 200px;
+            position: absolute;
+            align-items: center;
+            border: 2px solid black;
+            border-radius: 5px;
+        }
+    </style>
+    <br><br>
+    <h3 class="text-center">INGRESAR</h3>
+    <div class="container">
+        <div class="row">
+            <form class="col-sm-12" accept-charset="utf-8" id="login_form" class="form-group">
+                <input type="text" name="" id="correo" placeholder="Correo" value="" class="form-control">
+                <br>
+                <input type="text" name="" id="usuario" placeholder="Usuario" value="" class="form-control">
+                <br><br>
+                <input type="button" name="" class="btn btn-primary" value="Ingresar" onclick="ingresar()">
+            </form>
+        </div>
+    </div>
+
+    <br><br><br>
+
+    <div class="container content" id="content-message">
+
+    </div>
+    <br><br><br><br><br><br>
+    <div class="container">
+
+        <div class="row">
+            <div class="col-sm-6 text-center">
+                <p><strong>Usuario: </strong>esto es un mensaje</p>
+            </div>
+        </div>
+
+        <div class="form-group col-sm-12 text-center">
+            <textarea class="form-control" placeholder="mensaje" id="mensaje" rows="2"></textarea>
+            <button type="" class="btn btn-primary btn-block" id="enviar_mensaje" onclick="enviar_mensaje()">Send Message!!!</button>
+        </div>
+
+    </div>
+
     <script src="jquery-3.5.1.min.js"></script>
     <script src="/socket.io/socket.io.js"></script>
-    <!--conexion de socket io desde el lado del cliente-->
+    <script src="./funciones_socket.js"></script>
     <script>
-        const socket = io.connect();
+        function ingresar() {
+            correo = $('#login_form #correo').val();
+            usuario = $('#login_form #usuario').val();
+            logear(correo, usuario);
+        }
+
+        function enviar_mensaje() {
+            mensaje = $('#mensaje').val();
+            enviar_msj(usuario, mensaje);
+        }
     </script>
+
 </body>
 
 </html>
